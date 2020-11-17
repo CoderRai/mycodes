@@ -1,22 +1,20 @@
 import PySimpleGUI as sg
 
 sg.theme('purple')
-# informações exibidas na tela
-layout = [[sg.Text('Digite um número')],
-          [sg.Input(key='NUMBER')],
-          [sg.Button('converter')],
-          [sg.Output(size=(30, 15)), sg.Button('sair', size=(5, 5))]]
+# informacoes exibidas na tela
+layout = [[sg.Text('Digite um numero')],
+          [sg.Input(key='NUMBER',size=(20,20))],
+          [sg.Button('converter'),sg.Button("sair",key="sair")]]
 
-window = sg.Window('conversor de bases númericas', layout)
+
+window = sg.Window('conversor de bases numericas', layout)
 
 while True:  # evento loop
     event, values = window.read()
-
-    num = int(values['NUMBER'])
-    # botão de fechar
     if event == sg.WIN_CLOSED or event == 'sair':
         break
+    num = int(values['NUMBER'])
+    # botao de fechar
+
     if event == 'converter':
-        print('Em binario o N° {} é:\n {}\n'.format(num, bin(num)[2:]))
-        print('Em hexadecimal o N° {} é:\n {}\n'.format(num, hex(num)[2:]))
-        print('Em octal o N° {} é:\n {}\n'.format(num, oct(num)[2:]))
+        sg.popup("em binário\n", bin(num)[2:],"Em Hexadecimal\n",hex(num)[2:],"Em octal\n",oct(num)[2:])
